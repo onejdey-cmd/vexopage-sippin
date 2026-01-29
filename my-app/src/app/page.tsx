@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 
+// Dynamiczny import playera (zapobiega błędom po stronie serwera)
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 // --- CZĄSTECZKI NA CAŁY EKRAN ---
@@ -61,22 +62,20 @@ const FullScreenParticles = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-10 pointer-events-none opacity-60" />;
 };
 
-// --- HEADER Z EFEKTEM LIGHT SWEEP (ZMIANA TEKSTU) ---
+// --- HEADER Z EFEKTEM LIGHT SWEEP ---
 const LightSweepHeader = () => {
   return (
-    <div className="relative text-center mb-2">
-        <style jsx global>{`
-             @keyframes shimmer {
-               0% { background-position: -200% center; }
-               100% { background-position: 200% center; }
-             }
-             .animate-shimmer {
-                animation: shimmer 2.5s linear infinite;
-             }
-        `}</style>
-      <h2 className="text-xl md:text-3xl font-black uppercase tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-white via-purple-400 to-purple-600 bg-[length:200%_auto] animate-shimmer drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
+    <div className="relative text-center mb-2 overflow-hidden">
+      <h2 className="text-xl md:text-3xl font-black uppercase tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-white via-purple-400 to-purple-600 bg-[length:200%_auto] animate-[shimmer_3s_linear_infinite] drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
         Wielki Turniej SIPPIN GEEKS
       </h2>
+      {/* Definicja animacji dla Tailwinda */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+      `}</style>
     </div>
   );
 };
@@ -183,13 +182,16 @@ export default function FortniteWorkshop() {
         <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">
             Główny Sponsor Turnieju
         </span>
-        <span className="text-3xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-white via-gray-400 to-gray-400 bg-[length:200%_auto] animate-shimmer drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]">
-            MAD DOG
-        </span>
+        <div className="relative overflow-hidden">
+             <span className="text-3xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-white via-gray-400 to-gray-400 bg-[length:200%_auto] animate-[shimmer_2s_linear_infinite] drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]">
+                MAD DOG
+            </span>
+        </div>
       </motion.div>
 
       {/* TŁO */}
       <div className="fixed inset-0 z-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img 
           src="https://cdn.discordapp.com/attachments/1448732312970989662/1466218316476711002/Zrzut_ekranu_2026-01-29_003356.png?ex=697bf1b7&is=697aa037&hm=99b5652fd764384cbc295c5fb4c2cf5c713d4fccc1ffa7b6ad98e731247ca44a&" 
           alt="Tło"
