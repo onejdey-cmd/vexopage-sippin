@@ -2,10 +2,13 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import dynamic from "next/dynamic";
+import ReactPlayer from "react-player";
 
-// Dynamiczny import playera (zapobiega błędom po stronie serwera)
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+// Komponent Audio Playera z @ts-ignore
+const AudioPlayer = ({ url, playing, volume, loop }: any) => (
+  // @ts-ignore
+  <ReactPlayer url={url} playing={playing} volume={volume} loop={loop} controls={false} width="0" height="0" />
+);
 
 // --- CZĄSTECZKI NA CAŁY EKRAN ---
 const FullScreenParticles = () => {
@@ -146,12 +149,11 @@ export default function FortniteWorkshop() {
       
       {/* PLAYER */}
       <div className="hidden">
-        <ReactPlayer
+        <AudioPlayer 
           url="https://youtu.be/WAAAhylEvEs?si=Y8dKJb_aRIOKy-h5"
           playing={playing}
           volume={volume}
           loop={true}
-          playsinline={true}
         />
       </div>
 
