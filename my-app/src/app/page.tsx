@@ -61,11 +61,10 @@ const FullScreenParticles = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-10 pointer-events-none opacity-60" />;
 };
 
-// --- HEADER Z EFEKTEM LIGHT SWEEP ---
+// --- HEADER Z EFEKTEM LIGHT SWEEP (ZMIANA TEKSTU) ---
 const LightSweepHeader = () => {
   return (
     <div className="relative text-center mb-2">
-        {/* Definicja animacji shimmer jest tutaj i działa globalnie */}
         <style jsx global>{`
              @keyframes shimmer {
                0% { background-position: -200% center; }
@@ -76,7 +75,7 @@ const LightSweepHeader = () => {
              }
         `}</style>
       <h2 className="text-xl md:text-3xl font-black uppercase tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-white via-purple-400 to-purple-600 bg-[length:200%_auto] animate-shimmer drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]">
-        Wielki Turniej VEXO
+        Wielki Turniej SIPPIN GEEKS
       </h2>
     </div>
   );
@@ -174,18 +173,16 @@ export default function FortniteWorkshop() {
         </div>
       </motion.div>
 
-      {/* --- NOWOŚĆ: SPONSOR (Prawy Dolny - BIAŁY LIGHT SWEEP) --- */}
+      {/* SPONSOR */}
       <motion.div
         initial={{ x: 50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 1, type: "spring" }}
-        // Zmiana: items-center, text-center, biały border
         className="fixed bottom-5 right-5 z-40 flex flex-col items-center text-center bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
       >
         <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">
             Główny Sponsor Turnieju
         </span>
-        {/* Zmiana: Biały gradient, animate-shimmer, biały drop-shadow */}
         <span className="text-3xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-white via-gray-400 to-gray-400 bg-[length:200%_auto] animate-shimmer drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]">
             MAD DOG
         </span>
@@ -286,6 +283,26 @@ export default function FortniteWorkshop() {
                     </motion.button>
                   </div>
                 </form>
+
+                {/* --- MISTRZ BINIU --- */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="mt-8 flex flex-col items-center justify-center text-center"
+                >
+                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em] mb-2">
+                        Aktualny Mistrz
+                    </p>
+                    <div className="bg-black/40 border border-yellow-600/30 px-6 py-3 rounded-full flex items-center gap-3 backdrop-blur-sm shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+                         <span className="text-xl animate-bounce">👑</span>
+                         <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 drop-shadow-[0_0_10px_rgba(234,179,8,0.8)]">
+                            BINIU
+                         </span>
+                         <span className="text-xl animate-bounce">👑</span>
+                    </div>
+                </motion.div>
+
               </motion.div>
             ) : (
               // --- SUKCES ---

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WIELKI TURNIEJ VEXO",
+  title: "WIELKI TURNIEJ SIPPIN",
   description: "made by: sippin",
 };
 
